@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   #get 'post/index' => 'post#index'
   get 'post/new'
   get 'post/create'
+  # REST.ful 아키텍쳐
   get 'post/:id' => 'post#show'
-
+  get 'post/:id/destroy' => 'post#destroy'
+  get 'post/:id/edit' => 'post#edit'
+  get 'post/:id/update' => 'post#update'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

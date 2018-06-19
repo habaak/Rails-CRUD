@@ -8,7 +8,7 @@ class PostController < ApplicationController
 
   def create
     # 1.
-    Post.create(title: params[:title],
+    post=Post.create(title: params[:title],
       body: params[:body]
     )
     # # 1.1
@@ -18,9 +18,29 @@ class PostController < ApplicationController
     # post.title = params[:title]
     # post.body = params[:body]
     # post.save
+
+    redirect_to "/post/#{post.id}"
+    #text 안에 변수를 넣을 때 (textinterpolation)
+    #반드시 ""로!!
   end
 
   def show
     @post = Post.find(params[:id])
+  end
+
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy
+    redirect_to '/'
+  end
+
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    post=Post.find(params[:id])
+    post.update(title: params[:title], body: params[:body]) # return 값이 true / false
+    redirect_to "/post/#{post.id}"
   end
 end
